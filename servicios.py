@@ -1,12 +1,14 @@
-
-
 def agregar_productos(inventario,nombre,precio,cantidad):
+    
+    
     productos={"nombre":nombre,
             "precio":precio,
             "cantidad":cantidad
 }
     inventario.append(productos)
-print("se agrego correctamente el producto")
+    print("se agrego correctamente el producto")
+    
+
 
 
 def mostrar_productos(inventario):
@@ -15,6 +17,7 @@ def mostrar_productos(inventario):
     else:
         for i in inventario:
             print(f"producto: {i["nombre"]}, precio: {i["precio"]}, cantidad {i["cantidad"]}")
+    
 
 def buscar_producto(inventario,nombre):
     for i in inventario:
@@ -44,18 +47,25 @@ def eliminar_producto(inventario,nombre):
 def calcular_estadistcicas(inventario):
     if not inventario:
         return None
+    
     valorTotal = 0
     cantidadTotal = 0
     for i in inventario:
         valorTotal += i["cantidad"]*i["precio"]
         cantidadTotal+= i["cantidad"]
-    
+        
     producto_mas_caro = inventario[0]
     for i in inventario:
         if i["precio"]> producto_mas_caro["precio"]:
             producto_mas_caro=i
-    
+        
     producto_mayor_stock = inventario[0]
     for i in inventario:
         if i["cantidad"]> producto_mayor_stock["cantidad"]:
             producto_mayor_stock=i
+        
+    return{"valor_total":valorTotal,
+        "cantidad_total":cantidadTotal,
+        "producto_mas_caro":producto_mas_caro,
+        "producto_mayor_stock":producto_mayor_stock
+        }
