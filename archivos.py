@@ -1,24 +1,24 @@
-import csv
+import csv     #importamos el modulo csv que sirve para leer y escribir archivos csv.
 
-def guardar_csv(inventario,ruta,incluir_header=True):
+def guardar_csv(inventario,ruta,incluir_header=True):         #definimos la funcion para guardar el inventario en un archivo csv.
     
     if not inventario:
         print("inventario vacio, no se puede guardar.")
         return
-    try:
+    try:                                                    #usamos try except para manejo de errores.
         with open(ruta,"w",newline="", encoding="utf-8") as archivo:
-            writer= csv.writer(archivo)
+            writer= csv.writer(archivo)  #crea un objeto para escribir en formato csv.
             if incluir_header:
                 writer.writerow(["nombre","precio","cantidad"])
             for i in inventario:
                 writer.writerow([i["nombre"],i["precio"],i["cantidad"]])
 
-        print(f"inventario guardado en: {ruta}")
+        print(f"inventario guardado en: {ruta}")  #se imprime si se guarda correctamente.
 
     except Exception as e:
         print("error al guardar:", e)
 
-def cargar_csv(ruta):
+def cargar_csv(ruta):   #creamos la funcion para leer archivo csv y convertirlo en lista de diccionarios
     
     inventario=[]
     errores=0
